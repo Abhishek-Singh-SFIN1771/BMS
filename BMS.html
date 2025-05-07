@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="images/favicon.png">
+        <title>B.M.S</title>
+    </head>
+
+    <body>
+
+        <header style="background-color: mediumpurple;">
+            <h1>Books Management System</h1>
+            <a href="Home">Home</a>
+            <a href="Book Slef">Book Slef</a>
+            <a href="Libraries">Libraries</a>
+            <a href="contact us">Contact Us</a>
+        </header>
+
+        <hr>
+        
+        <main>
+
+        <form action="BMS.nodejs" method="post">
+            <label for="Titile">Title</label>
+            <input type="text" id="Titile" required minlength="5" placeholder="name of book">
+
+            <br><br>
+
+            <label for="Author">Author</label>
+            <input type="text" id="Author" required minlength="5" placeholder="name of writer">
+
+            <br><br>
+
+            <label for="ISBN">ISBN</label>
+            <input type="text" id="ISBN" required placeholder="uique number of book">
+
+            <br><br>
+
+            <label for="Publication Date">Publication Date</label>
+            <input type="date" id="Publication Date" required placeholder="Relase date">
+
+            <br><br>
+
+            <label for="Genre">Genre</label>
+            <select id="Genre">
+                <option value="Action">Action</option>
+                <option value="Thriler">Thriler</option>
+                <option value="Romance">Romance</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+            </select>
+
+            <br><br>
+
+            <label for="review">Review</label>
+            <textarea id="review" placeholder="give some review about the book." rows="5" cols="50"></textarea>
+
+            <br><br>
+
+            <input type="reset">
+
+            <br><br>
+
+            <input type="submit">
+        </form>
+        
+
+        </main>
+
+        <footer style="background-color: mediumpurple;">
+            <hr>
+            Managed By: Abhishek Singh <br>
+            &copf;copyright reserved <br>
+            <small><a href="mailto:monkeyking@gmail.com">monkeyking@gmail.com</a></small> <br>
+            Contact : +91 00123-45678
+        </footer>
+    </body>
+
+</html>
