@@ -2,26 +2,52 @@
 <html lang="en">
 
     <head>
+
         <meta charset="UTF-8">
-        <link rel="icon" type="image/png" href="images/favicon.png">
         <title>B.M.S</title>
+
+        <style>
+            .header{
+                background-color: lightcoral;
+                color: black;
+            }
+
+            .form{
+                background-color: aqua;
+                color: red;
+            }
+
+            .button{
+                background-color: aqua;
+                border: solid;
+            }
+
+            .footer{
+                background-color: bisque;
+                color: rebeccapurple;
+            }
+
+        </style>
+
     </head>
 
     <body>
 
-        <header style="background-color: mediumpurple;">
+        <header class="header">
+
             <h1>Books Management System</h1>
             <a href="Home">Home</a>
             <a href="Book Slef">Book Slef</a>
             <a href="Libraries">Libraries</a>
             <a href="contact us">Contact Us</a>
+
         </header>
 
         <hr>
         
         <Main>
 
-        <form action="BMS.nodejs" method="post">
+        <form action="BMS.nodejs" method="post" class="form">
             <label for="Titile">Title</label>
             <input type="text" id="Titile" required minlength="5" placeholder="name of book">
 
@@ -57,24 +83,32 @@
 
             <br><br>
 
-            <input type="reset">
+            <button class="button">
+                <input type="reset" 
+                onclick="alert('From has been reset')">
 
-            <br><br>
+               
 
-            <input type="submit">
+                <input type="submit"
+                onclick="alert('book added to the database')">
+            </button>
+
         </form>
         
         
         </Main>
         
 
-        <footer style="background-color: mediumpurple;">
+        <footer class="footer">
+
             <hr>
             Managed By: Abhishek Singh <br>
             &copf;copyright reserved <br>
             <small><a href="mailto:abhishek.singh1@gmail.com">abhishek.singh1@gmail.com</a></small> <br>
             Contact : +91 00123-45678
+
         </footer>
+
     </body>
 
     
