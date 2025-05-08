@@ -1,5 +1,0 @@
-Started learning Js basics
-Completed git repo push and updation on daliy basis.
-Created a read me file for better uderstanding of project.
-
-This is the daily task update and will update here whole day process.
