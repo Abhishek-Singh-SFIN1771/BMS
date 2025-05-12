@@ -6,6 +6,8 @@
         <meta charset="UTF-8">
         <title>B.M.S</title>
 
+
+        <!--
         <style>
             .header{
                 background-color: lightcoral;
@@ -28,11 +30,14 @@
             }
 
         </style>
+         -->
 
     </head>
 
     <body>
 
+        <h1>Books Management System</h1>
+        <!-- 
         <header class="header">
 
             <h1>Books Management System</h1>
@@ -42,34 +47,35 @@
             <a href="contact us">Contact Us</a>
 
         </header>
+        -->
 
         <hr>
-        
-        <Main>
 
-        <form id="form" action="BMS.nodejs" method="post" class="form">
-            <label for="Titile" title="Tittle">Title</label>
-            <input type="text" id="Titile" required minlength="5" placeholder="name of book">
+        <form id="Book-Form" >
 
-            <br><br>
-
-            <label for="Author" title="Author">Author</label>
-            <input type="text" id="Author" required minlength="5" placeholder="name of writer">
+            <label for="title">Title</label>
+            <input type="text" id="title" required placeholder="name of book">
 
             <br><br>
 
-            <label for="ISBN" title="ISBN number">ISBN</label>
-            <input type="text" id="ISBN" required placeholder="unique number of book">
+            <label for="author">Author</label>
+            <input type="text" id="author" required placeholder="name of writer">
 
             <br><br>
 
-            <label for="Publication Date" title="Publish date">Publication Date</label>
-            <input type="date" id="Publication Date" required placeholder="Relase date">
+            <label for="isbn" >ISBN</label>
+            <input type="text" id="isbn" required placeholder="unique number of book">
 
             <br><br>
 
-            <label for="Genre">Genre</label>
-            <select id="Genre">
+            <label for="date" >Publication Date</label>
+            <input type="date" id="date" required placeholder="Relase date">
+             
+
+            <br><br>
+
+            <label for="genre">Genre</label>
+            <select id="genre">
                 <option value="Action">Action</option>
                 <option value="Thriler">Thriler</option>
                 <option value="Romance">Romance</option>
@@ -78,36 +84,57 @@
 
             <br><br>
 
-            <label for="review">Review</label>
-            <textarea id="review" placeholder="give some review about the book." rows="5" cols="50"></textarea>
-
-            <br><br>
-
-            <button class="button">
-                <input type="reset" 
-                onclick="alert('From has been reset')">
-
-               
-
-                <input type="submit"
-                onclick="alert('book added to the database')">
+            <button type="reset" onclick="alert('From has been reset')">
+                Reset Form
             </button>
+
+            <button type="submit">Add Book</button>
 
         </form>
         
-        
-        </Main>
-        
+        <hr>
 
-        <footer class="footer">
+        <footer>
 
-            <hr>
             Managed By: Abhishek Singh <br>
-            &copf;copyright reserved <br>
-            <small><a href="mailto:abhishek.singh1@gmail.com">abhishek.singh1@gmail.com</a></small> <br>
+            &copf;copyright reserved   <br>
+            <small>
+                <a href="mailto:abhishek.singh1@gmail.com">
+                    abhishek.singh1@gmail.com
+                </a>
+            </small> <br>
             Contact : +91 00123-45678
 
         </footer>
+
+        <script>
+
+            document.getElementById('Book-Form').
+            addEventListener('submit' , (e) => 
+            {
+                e.preventDefault();
+
+                const titile = document.getElementById('title').value.trim();
+                const author = document.getElementById('author').value.trim();
+                const isbn = document.getElementById('isbn').value.trim();
+                const date = document.getElementById('date').value.trim();
+                const genre = document.getElementById('genre').value.trim();
+
+                if(!titile || !author || !isbn || !date || !genre)
+                {
+                    alert("Make sure to fill all fields");
+                    return;
+                }
+
+                if (isNaN(isbn)) {
+                    alert("ISBN should be a number.");
+                    return;
+                }
+
+            });
+
+    
+        </script>
 
     </body>
 
