@@ -70,9 +70,13 @@
 
             <label for="year" >Publish Year</label>
             <input type="text" id="year" required placeholder="Relase Year">
-             
+        
+            <br><br>
             
+            <button onclick="calculateAge()">Calculate Age</button>
 
+            <input type="text" placeholder="Age of Book" class="js-age-input" readonly>
+    
             <br><br>
 
             <label for="genre">Genre</label>
@@ -150,6 +154,19 @@
                     return new Date().getFullYear() - this.year;
                 }
             }
+
+            function calculateAge ()
+            {
+              const publishYear = parseInt(document.getElementById('year').value.trim());
+              
+              const currentYear = new Date().getFullYear();
+
+              const age = currentYear - publishYear;
+              
+              const ageInput = document.querySelector('.js-age-input');
+              ageInput.value = age + ' years';
+            }
+
         </script>
 
     </body>
