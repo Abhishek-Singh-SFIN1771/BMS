@@ -54,7 +54,7 @@
         <form id="Book-Form" >
 
             <label for="title">Title</label>
-            <input type="text" id="title" required placeholder="name of book">
+            <input type="text" id="title"  placeholder="name of book">
 
             <br><br>
 
@@ -68,9 +68,10 @@
 
             <br><br>
 
-            <label for="date" >Publication Date</label>
-            <input type="date" id="date" required placeholder="Relase date">
+            <label for="year" >Publish Year</label>
+            <input type="text" id="year" required placeholder="Relase Year">
              
+            
 
             <br><br>
 
@@ -117,10 +118,10 @@
                 const titile = document.getElementById('title').value.trim();
                 const author = document.getElementById('author').value.trim();
                 const isbn = document.getElementById('isbn').value.trim();
-                const date = document.getElementById('date').value.trim();
+                const date = document.getElementById('year').value.trim();
                 const genre = document.getElementById('genre').value.trim();
 
-                if(!titile || !author || !isbn || !date || !genre)
+                if(!titile || !author || !isbn || !year || !genre)
                 {
                     alert("Make sure to fill all fields");
                     return;
@@ -133,7 +134,22 @@
 
             });
 
-    
+            class Book
+            {
+                constructor(title, author, isbn, year, genre) 
+                {
+                this.title = title;
+                this.author = author;
+                this.isbn = isbn;
+                this.year = parseInt(year);
+                this.genre = genre;
+                }
+
+                getAge()
+                {
+                    return new Date().getFullYear() - this.year;
+                }
+            }
         </script>
 
     </body>
