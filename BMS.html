@@ -6,48 +6,23 @@
         <meta charset="UTF-8">
         <title>B.M.S</title>
 
-
-        <!--
-        <style>
-            .header{
-                background-color: lightcoral;
-                color: black;
-            }
-
-            .form{
-                background-color: aqua;
-                color: red;
-            }
-
-            .button{
-                background-color: aqua;
-                border: solid;
-            }
-
-            .footer{
-                background-color: bisque;
-                color: rebeccapurple;
-            }
-
-        </style>
-         -->
+        <link rel="stylesheet" href="BMS.css">
 
     </head>
 
     <body>
 
         <h1>Books Management System</h1>
-        <!-- 
+        
         <header class="header">
 
-            <h1>Books Management System</h1>
             <a href="Home">Home</a>
             <a href="Book Slef">Book Slef</a>
             <a href="Libraries">Libraries</a>
             <a href="contact us">Contact Us</a>
 
         </header>
-        -->
+       
 
         <hr>
 
@@ -99,7 +74,7 @@
         
         <hr>
 
-        <footer>
+        <footer class="footer">
 
             Managed By: Abhishek Singh <br>
             &copf;copyright reserved   <br>
@@ -112,58 +87,7 @@
 
         </footer>
 
-        <script>
-
-            document.getElementById('Book-Form').
-            addEventListener('submit' , (e) => 
-            {
-                e.preventDefault();
-
-                const titile = document.getElementById('title').value.trim();
-                const author = document.getElementById('author').value.trim();
-                const isbn = document.getElementById('isbn').value.trim();
-                const date = document.getElementById('year').value.trim();
-                const genre = document.getElementById('genre').value.trim();
-
-                if(!titile || !author || !isbn || !year || !genre)
-                {
-                    alert("Make sure to fill all fields");
-                    return;
-                }
-
-                if (isNaN(isbn)) {
-                    alert("ISBN should be a number.");
-                    return;
-                }
-
-            });
-
-            class Book
-            {
-                constructor(title, author, isbn, year, genre) 
-                {
-                this.title = title;
-                this.author = author;
-                this.isbn = isbn;
-                this.year = parseInt(year);
-                this.genre = genre;
-                }
-                
-            }
-
-            function calculateAge ()
-            {
-              const publishYear = parseInt(document.getElementById('year').value.trim());
-              
-              const currentYear = new Date().getFullYear();
-
-              const age = currentYear - publishYear;
-              
-              const ageInput = document.querySelector('.js-age-input');
-              ageInput.value = age + ' years';
-            }
-
-        </script>
+        <script src="BMS.js"></script>
 
     </body>
 

@@ -1,0 +1,19 @@
+   .header{
+                background-color: lightcoral;
+                color: black;
+            }
+
+            .form{
+                background-color: aqua;
+                color: red;
+            }
+
+            .button{
+                background-color: aqua;
+                border: solid;
+            }
+
+            .footer{
+                background-color: bisque;
+                color: rebeccapurple;
+            }
