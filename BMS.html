@@ -24,38 +24,36 @@
         </header>
        
 
-        <hr>
-
-        <form id="Book-Form"></form>
+        <hr>    
 
             <label for="title">Title</label>
-            <input type="text" id="title"  placeholder="name of book" class="js-title">
+            <input type="text" id="title" required placeholder="name of book" class="title">
 
             <br><br>
 
             <label for="author">Author</label>
-            <input type="text" id="author" required placeholder="name of writer" class="js-author"> 
+            <input type="text" id="author" required placeholder="name of writer" class="author"> 
 
             <br><br>
 
             <label for="isbn" >ISBN</label>
-            <input type="text" id="isbn" required placeholder="unique number of book" class="js-isbn">
+            <input type="text" id="isbn" required placeholder="unique number of book" class="isbn">
 
             <br><br>
 
             <label for="year" >Publish Year</label>
-            <input type="text" id="year" required placeholder="Relase Year" class="js-year">
+            <input type="text" id="year" required placeholder="Relase Year" class="year">
         
             <br><br>
             
-            <button onclick="calculateAge()">Calculate Age</button>
+            <button class="age-button" id="age-button">Calculate Age</button>
 
-            <input type="number" placeholder="Age of Book" class="js-age-input" readonly>
+            <input type="number" placeholder="Age of Book" class="age-input" readonly>
     
             <br><br>
 
             <label for="genre">Genre</label>
-            <select id="genre" class="js-genre">
+            <select id="genre" class="genre">
                 <option value="Action">Action</option>
                 <option value="Thriler">Thriler</option>
                 <option value="Romance">Romance</option>
@@ -68,13 +66,13 @@
                 Reset Form
             </button>
 
-            <button type="submit" class="js-add-button" onclick="addBookToList();">Add Book</button>
+            <button type="submit" class="add-button">Add Book</button>
 
             <hr>
 
-        </form> 
+       
         
-        <div class="js-book-render"></div>
+        <div class="book-render"></div>
         
         <hr>
 
