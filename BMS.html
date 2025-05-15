@@ -3,6 +3,7 @@
 
     <head>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <title>B.M.S</title>
 
@@ -12,6 +13,7 @@
 
     <body>
 
+        <form id="book-form">
         <h1>Books Management System</h1>
         
         <header class="header">
@@ -37,19 +39,13 @@
             <br><br>
 
             <label for="isbn" >ISBN</label>
-            <input type="text" id="isbn" required placeholder="unique number of book" class="isbn">
+            <input type="number" id="isbn" required placeholder="unique number of book" class="isbn">
 
             <br><br>
 
             <label for="year" >Publish Year</label>
             <input type="text" id="year" required placeholder="Relase Year" class="year">
         
-            <br><br>
-            
-            <button class="age-button" id="age-button">Calculate Age</button>
-
-            <input type="number" placeholder="Age of Book" class="age-input" readonly>
-    
             <br><br>
 
             <label for="genre">Genre</label>
@@ -58,11 +54,15 @@
                 <option value="Thriler">Thriler</option>
                 <option value="Romance">Romance</option>
                 <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Non-Fiction">Non-Fiction</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Fantasy">Fantasy</option>
             </select>
 
             <br><br>
 
-            <button type="reset" onclick="alert('From has been reset')">
+            <button  type="reset" onclick="alert('From has been reset')">
                 Reset Form
             </button>
 
@@ -71,9 +71,24 @@
             <hr>
 
        
-        
-        <div class="book-render"></div>
-        
+            <h2>Books List</h2>
+            <table border="1" class="bookTable">
+                <thead>
+                    <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Year</th>
+                    <th>Genre</th>
+                    <th>Age</th>
+                    <th>Category</th>
+                    <th>Edit-Book</th>
+                    <th>Delete-Book</th>
+                    </tr>
+                </thead>
+
+                <tbody class="book-table"></tbody>
+            </table> 
         <hr>
 
         <footer class="footer">
@@ -90,7 +105,8 @@
         </footer>
 
         <script src="BMS.js"></script>
-
+        
+        </form>
     </body>
 
     
