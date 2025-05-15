@@ -31,6 +31,7 @@ const addBookToList = () =>
     const year = yearElement.value;
     const age = ageElement.value;
     const genre = genreElement.value;
+    
 
     if (!title || !author || !isbn || !year || !age || !genre) {
         alert("Add all fields than add the book");
@@ -38,7 +39,6 @@ const addBookToList = () =>
     }
     else{
     bookList.push({title, author, isbn, year, age, genre});
-    console.log(bookList);
 
     // will make input box back to empty like a reset form
     titleElement.value= '';
@@ -81,13 +81,28 @@ const renderBooks = () =>
             <div>
             ${genre}
             </div>
-            <button  onclick="bookList.splice(${i}, 1); 
-        renderBooks();" class="delete-button"> Delete </button>
+            <button class="delete-button"> Delete </button>
             `
             bookHtml += divHtml;
         }
 
         document.querySelector('.book-render').innerHTML = bookHtml;
+
+        document.querySelectorAll('.delete-button')
+        .forEach((deleteButtonElement, index) =>
+            {
+                deleteButtonElement.addEventListener('click' , () => 
+                    {
+                    bookList.splice(index, 1); 
+                    renderBooks();
+                    });
+                deleteButtonElement.addEventListener('click' , () =>
+                    {
+                        alert('book is deleted');
+                    })
+            }
+        );
+       
 };
 
 // added event listner instead on onclick - better way
