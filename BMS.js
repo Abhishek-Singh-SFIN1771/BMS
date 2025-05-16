@@ -15,8 +15,10 @@ class Book
             (e) => {e.preventDefault();
 
         const book = this.querrySelector();
+        if(book){
         this.addBookToList(book);
         form.reset();
+        }
         });
     }
 
@@ -37,8 +39,10 @@ class Book
         const genre = genreElement.value;
 
         // Validation 
-        if (!title || !author || !isbn || !year || !genre) {
-           return alert('Fill all the fields');
+        if (!title || !author || !isbn || !year || !genre) 
+        {
+    
+         alert('Fill all the fields');
         }
         else{
         const book = 
