@@ -1,146 +1,178 @@
-const bookList = [];
-
-
-const calculateAge = () => 
+class Book
 {
-    const publishYear = parseInt(document.getElementById('year').value.trim());
-    const currentYear = new Date().getFullYear();
+    bookList = [];
+    age = undefined;
 
-    const age = currentYear - publishYear;
-    const inputElement =  document.querySelector('.age-input');
-    inputElement.value = age 
-};
+    constructor()
+    {
+        this.start();
+    }
 
-const ageElement = document.querySelector('.age-button');
-ageElement.addEventListener('click' , calculateAge);
+    start()  // Valadating and calling add function.
+    {
+        const form = document.getElementById('book-form');
+        form.addEventListener('submit' , 
+            (e) => {e.preventDefault();
 
-const addBookToList = () =>
-{
-    // slecting querry form hrml into variables
-    const titleElement = document.querySelector('.title');
-    const authorElement = document.querySelector('.author');
-    const isbnElement = document.querySelector('.isbn');
-    const yearElement = document.querySelector('.year');
-    const ageElement = document.querySelector('.age-input');
-    const genreElement = document.querySelector('.genre');
+        const book = this.querrySelector();
+        this.addBookToList(book);
+        form.reset();
+        });
+    }
 
-    // putting querry values into a varable
-    const title = titleElement.value;
-    const author = authorElement.value;
-    const isbn = isbnElement.value;
-    const year = yearElement.value;
-    const age = ageElement.value;
-    const genre = genreElement.value;
+    querrySelector() // returning book object with values from html page.
+    {
+        // slecting querry from html into variables
+        const titleElement = document.querySelector('.title');
+        const authorElement = document.querySelector('.author');
+        const isbnElement = document.querySelector('.isbn');
+        const yearElement = document.querySelector('.year');
+        const genreElement = document.querySelector('.genre');
+        
+        // putting querry values into a varable
+        const title = titleElement.value;
+        const author = authorElement.value;
+        const isbn = isbnElement.value;
+        const year = yearElement.value;
+        const genre = genreElement.value;
 
-    if (!title || !author || !isbn || !year || !age || !genre) {
-        alert("Add all fields than add the book");
+        // Validation 
+        if (!title || !author || !isbn || !year || !genre) {
+           return alert('Fill all the fields');
+        }
+        else{
+        const book = 
+        {title : title, author : author, isbn : isbn, year : year, genre : genre};
+
+        return book;
+        }
+    }
+
+
+    addBookToList(book)
+    {
+        this.bookList.push(book);
+        alert('book added to the database');
+        this.age = this.calculateAge();
+        this.renderBooks();
         return;
     }
-    else{
-    bookList.push({title, author, isbn, year, age, genre});
-    console.log(bookList);
 
-    // will make input box back to empty like a reset form
-    titleElement.value= '';
-    authorElement.value = '';
-    isbnElement.value = '';
-    yearElement.value = '';
-    ageElement.value = '';
-    genreElement.value = '';
+    calculateAge() 
+    {
+        const publishYear = parseInt(document.getElementById('year').value.trim());
+        const currentYear = new Date().getFullYear();
 
-
-    renderBooks();
+        const age1 = currentYear - publishYear;
+        return age1;
     }
-};
 
-const renderBooks = () =>
-{
-    let bookHtml = '';
+    renderBooks()
+    {
+        let bookHtml = '';
+        const tbody = document.querySelector('.book-table');         tbody.innerHTML='';
 
-    for(let i = 0; i < bookList.length; i++)
+        for(let i = 0; i < this.bookList.length ; i++)
+            {
+                const bookObject = this.bookList[i];
+                const{title , author , isbn , year , genre} = bookObject;
+                const category = this.categorizedGenre(genre); 
+                const row =  
+                `
+                <tr>
+                    <td data-label="title">${title}</td>
+                    <td data-label="author">${author}</td>
+                    <td data-label="isbn">${isbn}</td>
+                    <td data-label="year">${year}</td>
+                    <td data-label="year">${genre}</td>
+                    <td data-label="genre">${this.age}</td>
+                    <td data-label="category">${category}</td>
+
+                    <td data-label="Edit">    
+                        <button type = "button" class="edit-button">Edit</button>
+                    </td>
+            
+                    <td data-label="Delete">    
+                        <button type = "button" class="delete-button">Delete</button>
+                    </td>
+                </tr>
+                `
+                bookHtml += row;
+            }  
+
+        tbody.insertAdjacentHTML('beforeend', bookHtml);
+            
+        document.querySelectorAll('.delete-button')
+        .forEach((deleteButtonElement, index) =>
         {
-            const bookObject = bookList[i];
-            const{title , author , isbn , year , age , genre} = bookObject;
+            deleteButtonElement.addEventListener('click',() => 
+                {
+                    this.deleteBook(index);
+                });
+        });
 
-            const divHtml = `
-            <div>
-            ${title} 
-            </div>
-            <div>
-            ${author} 
-            </div>
-            <div>
-            ${isbn} 
-            </div>
-            <div>
-            ${year} 
-            </div>
-            <div>
-            ${age} 
-            </div>
-            <div>
-            ${genre}
-            </div>
-            <button  onclick="bookList.splice(${i}, 1); 
-        renderBooks();" class="delete-button"> Delete </button>
-            `
-            bookHtml += divHtml;
-        }
+        document.querySelectorAll('.edit-button')
+        .forEach((editButtonElement, index) =>
+        {
+           
+            editButtonElement.addEventListener('click',() => 
+                {
+                   this.editBook(index);
+                }); 
+        });
+    }
 
-        document.querySelector('.book-render').innerHTML = bookHtml;
-};
+    deleteBook(index) 
+    {
+        this.bookList.splice(index, 1);
+        setTimeout(
+            () => {alert('book is deleted')},500);
+        this.renderBooks();
+    }
 
-// added event listner instead on onclick - better way
-const buttonElement = document.querySelector('.add-button');
-buttonElement.addEventListener('click' , addBookToList );
+    categorizedGenre(genre)
+    {
+        const genreMap = 
+        {
+            action:'Action',
+            thriler:'Thriler',
+            romance: 'Romance',
+            fiction: 'Fiction',
+            nonfiction: 'Non-Fiction',
+            mystery: 'Mystery',
+            scifi: 'Science Fiction',
+            fantasy: 'Fantasy'
+        };
+
+        return genreMap[genre.toLowerCase()] || 'other';
+    }
+
+    editBook(index) 
+    {
+        const book = this.bookList[index];
+
+        document.querySelector('.title').value = book.title;
+        document.querySelector('.author').value = book.author;
+        document.querySelector('.isbn').value = book.isbn;
+        document.querySelector('.year').value = book.year;
+        document.querySelector('.genre').value = book.genre;
+
+
+        this.updateBook(index);
+        
+    }
+
+    updateBook(index)
+    {
+        this.bookList.splice(index, 1);
+    }
+
+}
+
+const button = document.querySelector('.add-button');
+button.addEventListener('click', new Book());
 
 
 
 
-
-
-
-
-
-
-
-
-
-// document.getElementById('Book-Form').
-//         addEventListener('submit' , (e) => 
-//         {
-//             e.preventDefault();
-
-//             const title = document.getElementById('title').value.trim();
-//             const author = document.getElementById('author').value.trim();
-//             const isbn = document.getElementById('isbn').value.trim();
-//             const year = document.getElementById('year').value.trim();
-//             const age = document.getElementById('age-button').value.trim();
-//             const genre = document.getElementById('genre').value.trim();
-
-//             if(!title || !author || !isbn || !year || !genre || !age)
-//             {
-//                 alert("Make sure to fill all fields");
-//                 return;
-//             }
-
-//             if (isNaN(isbn)) {
-//                 alert("ISBN should be a number.");
-//                 return;
-//             }
-
-//         });
-
-// class Book
-// {
-//     constructor(title, author, isbn, year, genre) 
-//     {
-//     this.title = title;
-//     this.author = author;
-//     this.isbn = isbn;
-//     this.year = parseInt(year);
-//     this.genre = genre;
-//     }
-    
-// }
 
