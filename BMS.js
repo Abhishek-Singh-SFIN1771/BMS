@@ -1,89 +1,102 @@
-class Book
-{
+class Book {
     bookList = [];
     age = undefined;
 
-    constructor()
-    {
+    constructor() {
         this.start();
+        this.fetchBooksFromServer();
     }
 
-    start()  // Valadating and calling add function.
-    {
-        const form = document.getElementById('book-form');
-        form.addEventListener('submit' , 
-            (e) => {e.preventDefault();
-
-        const book = this.querrySelector();
-        if(book){
-        this.addBookToList(book);
-        form.reset();
+    async fetchBooksFromServer() {
+        try {
+            const result = await fetch('books.json'); // Fetching from local JSON file
+            if (!result.ok) throw new Error('Failed to fetch books');
+            this.bookList = await result.json();
+            
+            this.renderBooks();
+        } catch (error) {
+            alert("Error fetching books: " + error.message);
         }
+    }
+
+    start() {
+        const form = document.getElementById('book-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const book = this.loadingValues();
+            if (book) {
+                await this.addBookToList(book);
+                form.reset();
+            }
+        });
+
+        const searchBox = document.getElementById('search');
+        if (searchBox) {
+            searchBox.addEventListener('input', (e) => {
+                this.filterBooks(e.target.value);
+            });
+        }
+
+        const sortSelect = document.querySelector('.sort-select');
+        sortSelect.addEventListener('change', (e) => {
+            this.sortBooks(e.target.value);
         });
     }
 
-    querrySelector() // returning book object with values from html page.
-    {
-        // slecting querry from html into variables
-        const titleElement = document.querySelector('.title');
-        const authorElement = document.querySelector('.author');
-        const isbnElement = document.querySelector('.isbn');
-        const yearElement = document.querySelector('.year');
-        const genreElement = document.querySelector('.genre');
-        
-        // putting querry values into a varable
-        const title = titleElement.value;
-        const author = authorElement.value;
-        const isbn = isbnElement.value;
-        const year = yearElement.value;
-        const genre = genreElement.value;
+    loadingValues() {
+        const bookId = parseInt(document.querySelector('.book-id').value);
+        const title = document.querySelector('.title').value;
+        const author = document.querySelector('.author').value;
+        const isbn = document.querySelector('.isbn').value;
+        const year = document.querySelector('.year').value;
+        const genre = document.querySelector('.genre').value;
 
-        // Validation 
-        if (!title || !author || !isbn || !year || !genre) 
-        {
-    
-         alert('Fill all the fields');
-        }
-        else{
+        if (!bookId || !title || !author || !isbn || !year || !genre) {
+            alert('Fill all the fields');
+            return;
+        }else{
         const book = 
-        {title : title, author : author, isbn : isbn, year : year, genre : genre};
+        {bookId : bookId ,title : title, author : author, isbn : isbn, year : year, genre : genre};
 
         return book;
         }
     }
 
-
-    addBookToList(book)
-    {
-        this.bookList.push(book);
-        alert('book added to the database');
-        this.age = this.calculateAge();
-        this.renderBooks();
-        return;
+    async addBookToList(book) {
+        try {
+            // Simulating async POST to server 
+           // book.bookId = Date.now(); // Unique id
+            this.bookList.push(book);
+           // this.age = this.calculateAge(book.year);
+            this.renderBooks();
+            alert('Book added!');
+        } catch (err) {
+            alert('Error adding book: ' + err.message);
+        }
     }
 
-    calculateAge() 
-    {
-        const publishYear = parseInt(document.getElementById('year').value.trim());
+    calculateAge(year) {
+        const publishYear = parseInt(year);
         const currentYear = new Date().getFullYear();
 
-        const age1 = currentYear - publishYear;
-        return age1;
+        return currentYear - publishYear;
     }
 
-    renderBooks()
-    {
+    renderBooks(filteredList = null) {
         let bookHtml = '';
-        const tbody = document.querySelector('.book-table');         tbody.innerHTML='';
+        const tbody = document.querySelector('.book-table');         
+        const books = filteredList || this.bookList;
 
-        for(let i = 0; i < this.bookList.length ; i++)
+        for(let i = 0; i < books.length ; i++)
             {
                 const bookObject = this.bookList[i];
-                const{title , author , isbn , year , genre} = bookObject;
+                const{bookId, title , author , isbn , year , genre} = bookObject;
+                this.age = this.calculateAge(year);
                 const category = this.categorizedGenre(genre); 
                 const row =  
                 `
                 <tr>
+                    <td data-label="title">${bookId}</td>
                     <td data-label="title">${title}</td>
                     <td data-label="author">${author}</td>
                     <td data-label="isbn">${isbn}</td>
@@ -99,13 +112,20 @@ class Book
                     <td data-label="Delete">    
                         <button type = "button" class="delete-button">Delete</button>
                     </td>
+
+                    <td data-label="Details">
+                    <button type="button" class="detail-button">Details</button>
+                    </td>
                 </tr>
                 `
                 bookHtml += row;
             }  
 
-        tbody.insertAdjacentHTML('beforeend', bookHtml);
-            
+            tbody.innerHTML= bookHtml;
+        this.attachEventListeners();
+    }
+
+    attachEventListeners() {
         document.querySelectorAll('.delete-button')
         .forEach((deleteButtonElement, index) =>
         {
@@ -124,59 +144,99 @@ class Book
                    this.editBook(index);
                 }); 
         });
+
+        document.querySelectorAll('.detail-button').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                this.showBookDetails(this.bookList[index]);
+            });
+        });
+        
+        
     }
 
-    deleteBook(index) 
-    {
-        this.bookList.splice(index, 1);
+    deleteBook(index) {
+         this.bookList.splice(index, 1);
         setTimeout(
             () => {alert('book is deleted')},500);
         this.renderBooks();
     }
 
-    categorizedGenre(genre)
-    {
-        const genreMap = 
-        {
-            action:'Action',
-            thriler:'Thriler',
-            romance: 'Romance',
-            fiction: 'Fiction',
-            nonfiction: 'Non-Fiction',
-            mystery: 'Mystery',
-            scifi: 'Science Fiction',
-            fantasy: 'Fantasy'
-        };
-
-        return genreMap[genre.toLowerCase()] || 'other';
-    }
-
-    editBook(index) 
-    {
+    editBook(index) {
         const book = this.bookList[index];
 
+        document.querySelector('.book-id').value = book.bookId;
         document.querySelector('.title').value = book.title;
         document.querySelector('.author').value = book.author;
         document.querySelector('.isbn').value = book.isbn;
         document.querySelector('.year').value = book.year;
         document.querySelector('.genre').value = book.genre;
 
-
         this.updateBook(index);
-        
     }
 
     updateBook(index)
     {
-        this.bookList.splice(index, 1);
+         this.bookList.splice(index, 1);
     }
 
+    categorizedGenre(genre) {
+        const genreMap = {
+            action: 'Action',
+            thriller: 'Thriller',
+            romance: 'Romance',
+            fiction: 'Fiction',
+            nonfiction: 'Non-Fiction',
+            mystery: 'Mystery',
+            scifi: 'Sci-Fi',
+            fantasy: 'Fantasy'
+        };
+        return genreMap[genre.toLowerCase()] || 'Other';
+    }
+
+    filterBooks(keyword) {
+        const filtered = this.bookList.filter(book => book.title.toLowerCase().includes(keyword.toLowerCase()));
+        this.renderBooks(filtered);
+    }
+
+    sortBooks(criterion) {
+        if (!criterion) return;
+
+        this.bookList.sort((a, b) => {
+            if (criterion === 'year') {
+            return parseInt(a.year) - parseInt(b.year);
+            }
+            else if(criterion === 'bookId')
+            {
+                return parseInt(a.bookId) - parseInt(b.bookId);
+            }
+            else 
+            {
+            return a[criterion].localeCompare(b[criterion]);
+            }
+        });
+
+        this.renderBooks();
+    }
+
+    showBookDetails(book) {
+    const detailDiv = document.querySelector('.book-detail');
+    detailDiv.innerHTML = `
+        <strong>Book Details:</strong><br>
+        Book-Id: ${book.bookId}<br>
+        Title: ${book.title}<br>
+        Author: ${book.author}<br>
+        ISBN: ${book.isbn}<br>
+        Year: ${book.year}<br>
+        Genre: ${book.genre}<br>
+        Age: ${this.calculateAgeFromYear(book.year)} years old
+    `;
+    detailDiv.style.display = 'block';
+    }
+
+    calculateAgeFromYear(year) {
+    const currentYear = new Date().getFullYear();
+    return currentYear - parseInt(year);
+    }
 }
 
-const button = document.querySelector('.add-button');
-button.addEventListener('click', new Book());
-
-
-
-
-
+new Book();

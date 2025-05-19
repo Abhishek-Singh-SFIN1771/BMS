@@ -44,6 +44,14 @@
     cursor: pointer;
 }
 
+.book-detail
+{
+    display:none; 
+    margin-top: 10px; 
+    border: 1px solid #ccc; 
+    padding: 10px;
+}
+
 @media (max-width: 600px) {
   table, thead, tbody, th, td, tr {
     display: block;
