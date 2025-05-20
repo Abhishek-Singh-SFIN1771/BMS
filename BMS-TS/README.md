@@ -37,7 +37,7 @@
     * -> Data Base Management: Books stored in database (table: books)
  
 * Implementation :-
-    * -> Frontend: HTML, CSS, JavaScript - framework Angular
+    * -> Frontend: HTML, CSS, JavaScript, TypeScript - framework Angular
     * -> Backend: Node.js , framework- Loopback4
     * -> Database: MySQL
  
