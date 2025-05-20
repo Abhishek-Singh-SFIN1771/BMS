@@ -22,7 +22,7 @@
 
 * Database:- PostgreSql
 
-* Other:- Html, Css , typeScript
+* Other:- Html, Tailwind-CSS
 
 ##  Project Plan for Book Management System (BMS)
 ### Step 1
