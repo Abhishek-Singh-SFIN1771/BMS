@@ -14,7 +14,7 @@
 * Amin module: Enable administrations to review, approve, or reject Book details.
 * Error and Expection handling Module: Robust error handling mechanisms to ensure a smooth user experience.
 ## TECH-STACK
-* Programming Languages:- Javascript , Node.js
+* Programming Languages:- TypeScript , Node.js
 
 * Frameworks:- Angular, Tailwind, loopback4
 
