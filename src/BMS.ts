@@ -2,7 +2,7 @@
 import { Book, GenreMap } from './type';
 // import { LogMethod } from './utils';
 
-class BookManager {
+export class BookManager {
   private bookList: Book[] = [];
   private age: number | undefined;
 
