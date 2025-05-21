@@ -1,5 +1,6 @@
-// import { BookManager } from './BMS';
+import { BookManager } from './BMS';
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   new BookManager();
-// });
+
+document.addEventListener('DOMContentLoaded', () => {
+  new BookManager();
+});
