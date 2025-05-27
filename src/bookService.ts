@@ -10,7 +10,7 @@ export class BookService implements bookInterface
 
     constructor ()
     {
-        this.init();
+        // this.init();
         this.fetchBooks();
     }
 
@@ -26,32 +26,32 @@ export class BookService implements bookInterface
         }
     }
 
-    init(): void {
-        const form = document.getElementById('book-form') as HTMLFormElement;
-        form.addEventListener('submit', (e: Event) => {
-        e.preventDefault();
-        const book = this.loadValues();
-        if (book) {
-            this.addBook(book);
-            form.reset();
-        }
-        });
+    // init(): void {
+    //     const form = document.getElementById('book-form') as HTMLFormElement;
+    //     form.addEventListener('submit', (e: Event) => {
+    //     e.preventDefault();
+    //     const book = this.loadValues();
+    //     if (book) {
+    //         this.addBook(book);
+    //         form.reset();
+    //     }
+    //     });
 
-        const searchBox = document.getElementById('search') as HTMLInputElement | null;
-        if(searchBox) 
-        {
-            searchBox.addEventListener('input' , (e) => 
-            {
-                const input = (document.querySelector('.search') as HTMLInputElement).value;
-                this.filterBooks(input);
-            });
-        }
+    //     const searchBox = document.getElementById('search') as HTMLInputElement | null;
+    //     if(searchBox) 
+    //     {
+    //         searchBox.addEventListener('input' , (e) => 
+    //         {
+    //             const input = (document.querySelector('.search') as HTMLInputElement).value;
+    //             this.filterBooks(input);
+    //         });
+    //     }
 
-        const sortSelect = document.querySelector('.sort-select') as HTMLSelectElement;
-        sortSelect.addEventListener('change', (e) => {
-        this.sortBooks((e.target as HTMLSelectElement).value);
-        });
-    }
+    //     const sortSelect = document.querySelector('.sort-select') as HTMLSelectElement;
+    //     sortSelect.addEventListener('change', (e) => {
+    //     this.sortBooks((e.target as HTMLSelectElement).value);
+    //     });
+    // }
 
     loadValues(): Book | undefined 
     {

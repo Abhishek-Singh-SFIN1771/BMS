@@ -8,7 +8,7 @@ export interface bookInterface
 
     fetchBooks(): Promise<void>;
 
-    init(): void
+    // init(): void
 
     loadValues(): Book | undefined;
 

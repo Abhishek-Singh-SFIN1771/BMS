@@ -1,5 +1,7 @@
 import { BookService } from './bookService.js';
+import { BookManager } from './bookManager.js';
 document.addEventListener('DOMContentLoaded', () => 
     {
-        new BookService();
+        const bi = new BookService();
+        new BookManager(bi);
     });
