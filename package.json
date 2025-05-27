@@ -1,0 +1,20 @@
+{
+  "name": "bms",
+  "version": "1.0.0",
+  "description": "* The Book Management System (BMS) is a web-based application designed to help users efficiently manage and organize books in a digital environment. This system is particularly useful for libraries, bookstores, educational institutions, and individuals who wish to keep track of their book collections and transactions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhishek-Singh-SFIN1771/BMS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abhishek-Singh-SFIN1771/BMS/issues"
+  },
+  "homepage": "https://github.com/Abhishek-Singh-SFIN1771/BMS#readme"
+}
