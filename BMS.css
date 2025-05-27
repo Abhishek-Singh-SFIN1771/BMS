@@ -1,21 +1,21 @@
 .header{
-            background-color: lightcoral;
-            color: black;
+            background-color: #f08080;
+            color: #000000;
         }
 
 .form{
-    background-color: aqua;
-    color: red;
+    background-color: #00ffff;
+    color: #ff0000;
 }
 
 .button{
-    background-color: aqua;
+    background-color: #00ffff;
     border: solid;
 }
 
 .footer{
-    background-color: bisque;
-    color: rebeccapurple;
+    background-color: #ffe4c4;
+    color: #663399;
 }
 .book-render
 {
@@ -27,8 +27,8 @@
 
 .edit-button
 {
-    background-color: blue;
-    color: white;
+    background-color: #0000ff;
+    color: #ffffff;
     border: none;
     font-size: 13px;
     padding: 6px;
@@ -36,8 +36,8 @@
 }
 .delete-button
 {
-    background-color: red;
-    color: white;
+    background-color: #ff0000;
+    color: #ffffff;
     border: none;
     font-size: 13px;
     padding: 6px;
