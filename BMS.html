@@ -3,15 +3,17 @@
 
     <head>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <title>B.M.S</title>
 
-        <link rel="stylesheet" href="BMS.css">
+        <link rel="stylesheet" href="./BMS.css">
 
     </head>
 
     <body>
 
+        <form id="book-form">
         <h1>Books Management System</h1>
         
         <header class="header">
@@ -24,57 +26,91 @@
         </header>
        
 
-        <hr>    
+        <hr>        
+
+            <label for="book-id">Book-ID</label>
+            <input type="text" id="book-id" placeholder="book id please" class="book-id">
+
+            <br><br>
 
             <label for="title">Title</label>
-            <input type="text" id="title" required placeholder="name of book" class="title">
+            <input type="text" id="title" placeholder="name of book" class="title">
 
             <br><br>
 
             <label for="author">Author</label>
-            <input type="text" id="author" required placeholder="name of writer" class="author"> 
+            <input type="text" id="author" placeholder="name of writer" class="author"> 
 
             <br><br>
 
             <label for="isbn" >ISBN</label>
-            <input type="text" id="isbn" required placeholder="unique number of book" class="isbn">
+            <input type="text" id="isbn" placeholder="unique number of book" class="isbn">
 
             <br><br>
 
             <label for="year" >Publish Year</label>
-            <input type="text" id="year" required placeholder="Relase Year" class="year">
+            <input type="text" id="year" placeholder="Relase Year" class="year">
         
-            <br><br>
-            
-            <button class="age-button" id="age-button">Calculate Age</button>
-
-            <input type="number" placeholder="Age of Book" class="age-input" readonly>
-    
             <br><br>
 
             <label for="genre">Genre</label>
             <select id="genre" class="genre">
                 <option value="Action">Action</option>
-                <option value="Thriler">Thriler</option>
+                <option value="Thriller">Thriller</option>
                 <option value="Romance">Romance</option>
                 <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Non-Fiction">Non-Fiction</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Fantasy">Fantasy</option>
             </select>
 
             <br><br>
 
-            <button type="reset" onclick="alert('From has been reset')">
+            <button  type="reset" onclick="alert('From has been reset')">
                 Reset Form
             </button>
 
-            <button type="submit" class="add-button">Add Book</button>
+            <button type="submit" class="add-button" id="add-button">Add Book</button>
+
+            <input type="text" id="search"  class="search" placeholder="Search by title..." />
+
+            <select class="sort-select" id="sort-select">
+                <option value="">Sort Books</option>
+                <option value="title">Title</option>
+                <option value="year">Year</option>
+                <option value="bookId">bookId</option>
+            </select>
 
             <hr>
 
        
+            <h2>Books List</h2>
+            <table border="1" class="bookTable">
+                <thead>
+                    <tr>
+                    <th>Book-Id</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Year</th>
+                    <th>Genre</th>
+                    <th>Age</th>
+                    <th>Category</th>
+                    <th>Edit-Book</th>
+                    <th>Delete-Book</th>
+                    <th>Information</th>
+                    </tr>
+                </thead>
+
+                <tbody class="book-table"></tbody>
+            </table> 
         
-        <div class="book-render"></div>
-        
-        <hr>
+
+            
+            <div class="book-detail"></div>
+
+        <hr>    
 
         <footer class="footer">
 
@@ -89,8 +125,9 @@
 
         </footer>
 
-        <script src="BMS.js"></script>
-
+        <script type="module" src="./dist/main.js" defer></script>
+        
+        </form>
     </body>
 
     
