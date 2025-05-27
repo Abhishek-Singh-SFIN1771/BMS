@@ -1,6 +1,5 @@
 
 import { Book, GenreMap } from './type';
-// import { LogMethod } from './utils';
 
 export class BookManager {
   private bookList: Book[] = [];
@@ -14,7 +13,7 @@ export class BookManager {
   private async fetchBooks(): Promise<void> {
     try {
       const res = await fetch('books.json');
-      if (!res.ok) throw new Error('Failed to fetch books');
+      if (!res.ok) throw new Error('Failed to fetch books'); 
       const data: Book[] = await res.json();
       this.bookList = data;
       this.renderBooks();
@@ -37,10 +36,10 @@ export class BookManager {
     const searchBox = document.getElementById('search') as HTMLInputElement | null;
     if(searchBox) 
       {
-        searchBox.addEventListener('input' , (e: Event) => 
+        searchBox.addEventListener('input' , (e) => 
           {
-              const target1 = e.target as HTMLInputElement;
-              this.filterBooks(target1.value);
+             const input = (document.querySelector('.search') as HTMLInputElement).value;
+             this.filterBooks(input);
           });
       }
 
@@ -66,8 +65,7 @@ export class BookManager {
     return { bookId, title, author, isbn, year, genre };
   }
 
-  //@LogMethod
-  private addBook(book: Book): void {
+   private addBook(book: Book): void {
     this.bookList.push(book);
     this.age = this.calculateAge(book.year);
     this.renderBooks();
@@ -199,9 +197,9 @@ export class BookManager {
     return genreMap[genre.toLowerCase()] || 'Other';
   }
 
-  private filterBooks(keyword: string) :void 
+  private filterBooks(keyword: any) :void 
   {
-    const filtered = this.bookList.filter(book => 
+        const filtered = this.bookList.filter((book: Book) => 
         book.title.toLowerCase().includes(keyword.toLowerCase())
     );
     this.renderBooks(filtered);
@@ -222,18 +220,11 @@ export class BookManager {
     ISBN: ${book.isbn}<br>
     Year: ${book.year}<br>
     Genre: ${book.genre}<br>
-    Age: ${this.calculateAgeFromYear(book.year)} years old
+    Age: ${this.age} years old
   `;
 
   detailDiv.style.display = 'block';
   }
 
-  private calculateAgeFromYear(year: any): number 
-  {
-    const currentYear = new Date().getFullYear();
-    return currentYear- parseInt(year);
-  }
-
 }
 
-new BookManager();
