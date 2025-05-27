@@ -24,6 +24,16 @@
     column-gap: 5px;
     row-gap: 5px;
 }
+
+.edit-button
+{
+    background-color: blue;
+    color: white;
+    border: none;
+    font-size: 13px;
+    padding: 6px;
+    cursor: pointer;
+}
 .delete-button
 {
     background-color: red;
@@ -32,4 +42,44 @@
     font-size: 13px;
     padding: 6px;
     cursor: pointer;
+}
+
+.book-detail
+{
+    display:none; 
+    margin-top: 10px; 
+    border: 1px solid #ccc; 
+    padding: 10px;
+}
+
+@media (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex: 1;
+  }
+
+  td:last-child {
+    justify-content: center;
+  }
 }
