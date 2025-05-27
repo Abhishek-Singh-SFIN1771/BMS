@@ -28,30 +28,6 @@ export class BookService {
             }
         });
     }
-    // init(): void {
-    //     const form = document.getElementById('book-form') as HTMLFormElement;
-    //     form.addEventListener('submit', (e: Event) => {
-    //     e.preventDefault();
-    //     const book = this.loadValues();
-    //     if (book) {
-    //         this.addBook(book);
-    //         form.reset();
-    //     }
-    //     });
-    //     const searchBox = document.getElementById('search') as HTMLInputElement | null;
-    //     if(searchBox) 
-    //     {
-    //         searchBox.addEventListener('input' , (e) => 
-    //         {
-    //             const input = (document.querySelector('.search') as HTMLInputElement).value;
-    //             this.filterBooks(input);
-    //         });
-    //     }
-    //     const sortSelect = document.querySelector('.sort-select') as HTMLSelectElement;
-    //     sortSelect.addEventListener('change', (e) => {
-    //     this.sortBooks((e.target as HTMLSelectElement).value);
-    //     });
-    // }
     loadValues() {
         const bookId = parseInt(document.querySelector('.book-id').value);
         const title = document.querySelector('.title').value;
