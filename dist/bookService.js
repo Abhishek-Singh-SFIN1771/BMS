@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 export class BookService {
     constructor() {
         this.bookList = [];
-        // this.init();
         this.fetchBooks();
     }
     fetchBooks() {
@@ -57,13 +56,12 @@ export class BookService {
         const books = filteredList || this.bookList;
         tbody.innerHTML = '';
         for (let i = 0; i < books.length; i++) {
-            const bookObject = this.bookList[i];
-            const { bookId, title, author, isbn, year, genre } = bookObject;
+            const { bookId, title, author, isbn, year, genre } = books[i];
             const category = this.getGenreCategory(genre);
             this.age = this.calculateAge(year);
             const row = `
             <tr>
-                <td data-label="title">${bookId}</td>
+                <td data-label="book-id">${bookId}</td>
                 <td data-label="title">${title}</td>
                 <td data-label="author">${author}</td>
                 <td data-label="isbn">${isbn}</td>

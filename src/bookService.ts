@@ -10,11 +10,11 @@ export class BookService implements bookInterface
 
     constructor ()
     {
-        // this.init();
         this.fetchBooks();
     }
 
-    async fetchBooks(): Promise<void> {
+    async fetchBooks(): Promise<void> 
+    {
         try {
         const res = await fetch('books.json');
         if (!res.ok) throw new Error('Failed to fetch books'); 
@@ -25,6 +25,7 @@ export class BookService implements bookInterface
         alert("Error fetching books: " + error.message);
         }
     }
+    
     loadValues(): Book | undefined 
     {
         const bookId = parseInt((document.querySelector('.book-id') as HTMLInputElement).value);
@@ -63,19 +64,18 @@ export class BookService implements bookInterface
 
         const tbody = document.querySelector('.book-table') as HTMLTableSectionElement;     
         const books = filteredList || this.bookList;
-
+        
         tbody.innerHTML = '';
 
         for(let i = 0; i < books.length ; i++)
         {
-            const bookObject = this.bookList[i];
-            const{bookId, title , author , isbn , year , genre} = bookObject;
+            const{bookId, title , author , isbn , year , genre} = books[i];
             const category = this.getGenreCategory(genre); 
             this.age = this.calculateAge(year);
             const row =  
             `
             <tr>
-                <td data-label="title">${bookId}</td>
+                <td data-label="book-id">${bookId}</td>
                 <td data-label="title">${title}</td>
                 <td data-label="author">${author}</td>
                 <td data-label="isbn">${isbn}</td>
@@ -183,11 +183,9 @@ export class BookService implements bookInterface
         return genreMap[genre.toLowerCase()] || 'Other';
     }
 
-    filterBooks(keyword: any) :void 
+    filterBooks(keyword: string) :void 
     {
-            const filtered = this.bookList.filter((book: Book) => 
-            book.title.toLowerCase().includes(keyword.toLowerCase())
-        );
+        const filtered = this.bookList.filter((book: Book) => book.title.toLowerCase().includes(keyword.toLowerCase()));
         this.renderBooks(filtered);
     }
 

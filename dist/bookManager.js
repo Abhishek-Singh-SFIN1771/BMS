@@ -15,8 +15,8 @@ export class BookManager {
         });
         const searchBox = document.getElementById('search');
         if (searchBox) {
-            searchBox.addEventListener('input', (e) => {
-                const input = document.querySelector('.search').value;
+            searchBox.addEventListener('input', () => {
+                const input = searchBox.value;
                 this.bi.filterBooks(input);
             });
         }

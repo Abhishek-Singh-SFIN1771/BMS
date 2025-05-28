@@ -1,4 +1,5 @@
-export interface Book {
+export interface Book 
+{
   bookId: number;
   title: string;
   author: string;
@@ -7,6 +8,7 @@ export interface Book {
   genre: string;
 }
 
-export interface GenreMap {
+export interface GenreMap 
+{
   [key: string]: string;
 }

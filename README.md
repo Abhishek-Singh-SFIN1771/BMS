@@ -35,6 +35,7 @@
     * -> Front-End: Form for adding books using (HTML, CSS, JavaScript)
     * -> Architecture: Client-server model with 3-tier architecture(View , Controller , Model-Logic part).
     * -> Data Base Management: Books stored in database (table: books)
+    * -> Ues SOLID principle for better code management
  
 * Implementation :-
     * -> Frontend: HTML, CSS, JavaScript - framework Angular
@@ -73,5 +74,5 @@
 ### Step 4 Set Up a GitHub Repository and push source code
   * -> Repo name = Abhishek-Singh-SFIN1771-BMS
   * -> Push source code
-  * -> new branch
+
 

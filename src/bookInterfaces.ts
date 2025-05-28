@@ -26,7 +26,7 @@ export interface bookInterface
 
     getGenreCategory(genre: string): string;
 
-    filterBooks(keyword: any) :void;
+    filterBooks(keyword: string) :void;
 
     renderBooks(): void;
 
