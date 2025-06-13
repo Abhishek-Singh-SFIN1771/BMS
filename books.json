@@ -1,0 +1,19 @@
+[
+  {
+    "bookId": 1,
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780547928227",
+    "year": "1937",
+    "genre": "fantasy"
+  },
+  
+  {
+    "bookId": 2,
+    "title": "1984",
+    "author": "George Orwell",
+    "isbn": "9780451524935",
+    "year": "1949",
+    "genre": "fiction"
+  }
+]

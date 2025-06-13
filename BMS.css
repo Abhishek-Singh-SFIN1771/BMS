@@ -1,21 +1,22 @@
+
 .header{
-            background-color: lightcoral;
-            color: black;
+            background-color: #f08080;
+            color: #000000;
         }
 
 .form{
-    background-color: aqua;
-    color: red;
+    background-color: #00ffff;
+    color: #ff0000;
 }
 
 .button{
-    background-color: aqua;
+    background-color: #00ffff;
     border: solid;
 }
 
 .footer{
-    background-color: bisque;
-    color: rebeccapurple;
+    background-color: #ffe4c4;
+    color: #663399;
 }
 .book-render
 {
@@ -24,12 +25,62 @@
     column-gap: 5px;
     row-gap: 5px;
 }
-.delete-button
+
+.edit-button
 {
-    background-color: red;
-    color: white;
+    background-color: #0000ff;
+    color: #ffffff;
     border: none;
     font-size: 13px;
     padding: 6px;
     cursor: pointer;
+}
+.delete-button
+{
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    font-size: 13px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.book-detail
+{
+    display:none; 
+    margin-top: 10px; 
+    border: 1px solid #ccc; 
+    padding: 10px;
+}
+
+@media (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex: 1;
+  }
+
+  td:last-child {
+    justify-content: center;
+  }
 }
